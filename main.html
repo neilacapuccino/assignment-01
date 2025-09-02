@@ -83,13 +83,18 @@
 
     document.getElementById('generateBtn').addEventListener('click', () => {
         const errorDiv = document.getElementById('inputError');
-        let count = parseInt(document.getElementById('resultCount').value, 10) || 10;
+        let count = parseInt(document.getElementById('resultCount').value, 10) || 0;
         if (count < 0 || count > 1000) {
             errorDiv.textContent = 'integer must be 0-1000';
             errorDiv.classList.remove('d-none');
             return;
         } else {
             errorDiv.classList.add('d-none');
+        }
+        if (count === 0) {
+            currentUsers = [];
+            generate(currentUsers);
+            return;
         }
         fetch(`https://randomuser.me/api/?results=${count}`)
         .then((response) => response.json())
