@@ -116,16 +116,7 @@
             if (newEmail) {
                 user.email = newEmail;
                 generate(currentUsers);
-                // Update modal content directly instead of reopening modal
-                document.getElementById('modalBody').innerHTML = `
-                    <img src="${user.picture.large}" class="mb-2 rounded" style="width:100px;height:100px;object-fit:cover;">
-                    <div><b>Address:</b> ${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.country}, ${user.location.postcode}</div>
-                    <div><b>Email:</b> ${user.email}</div>
-                    <div><b>Phone:</b> ${user.phone}</div>
-                    <div><b>Cell:</b> ${user.cell}</div>
-                    <div><b>DOB:</b> ${user.dob.date.slice(0,10)} (${user.dob.age} yrs)</div>
-                    <div><b>Gender:</b> ${user.gender}</div>
-                `;
+                document.querySelector('#modalBody div:nth-child(3)').innerHTML = `<b>Email:</b> ${user.email}`;
             }
         }
     };
